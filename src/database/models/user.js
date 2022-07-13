@@ -20,7 +20,6 @@ const attributes = {
     type: DataTypes.STRING,
   },
   image: {
-    allowNull: false,
     type: DataTypes.STRING,
   },
 };

@@ -1,6 +1,6 @@
 const errors = {
-  throwInformationInvalidError: 400,
   throwInvalidFieldsError: 400,
+  throwEmailIsRegistered: 409,
 };
 
 const errorHandlerMiddleware = ({ name, message }, _req, res, _next) => {
