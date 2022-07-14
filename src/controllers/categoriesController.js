@@ -6,6 +6,10 @@ const categoriesController = {
     const x = await categoriesService.add(name);
     res.status(201).json(x);
   },
+  async get(req, res) {
+    const categories = await categoriesService.get();
+    res.status(200).json(categories);
+  },
 };
 
 module.exports = categoriesController;

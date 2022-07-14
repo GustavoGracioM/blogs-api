@@ -6,5 +6,6 @@ const { validationName } = require('../middlewares/validation');
 const categoryRouter = Router();
 
 categoryRouter.post('/', validationToken, validationName, categoriesController.add);
+categoryRouter.get('/', validationToken, categoriesController.get);
 
 module.exports = categoryRouter;

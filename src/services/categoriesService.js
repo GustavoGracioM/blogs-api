@@ -2,8 +2,12 @@ const models = require('../database/models');
 
 const categoriesService = {
   async add(name) {
-    const x = await models.Category.create({ name });
-    return x;
+    const category = await models.Category.create({ name });
+    return category;
+  },
+  async get() {
+    const categories = await models.Category.findAll({ raw: true });
+    return categories;
   },
 };
 
