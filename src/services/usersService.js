@@ -21,6 +21,10 @@ const usersService = {
     const token = jwt.sign({ email, id: result.id }, process.env.JWT_SECRET);
     return token;
   },
+  async get() {
+    const users = await models.User.findAll({ attributes: { exclude: ['password'], raw: true } });
+    return users;
+  },
 };
 
 module.exports = usersService;

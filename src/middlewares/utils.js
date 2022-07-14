@@ -10,7 +10,14 @@ const throwEmailIsRegistered = (message) => {
   throw err;
 };
 
+const throwNotFoundToken = (message) => {
+  const err = new Error(message);
+  err.name = 'throwNotFoundToken';
+  throw err;
+};
+
 module.exports = {
   throwInvalidFieldsError,
   throwEmailIsRegistered,
+  throwNotFoundToken,
 };
