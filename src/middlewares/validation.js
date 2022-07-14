@@ -1,6 +1,6 @@
 const { throwInvalidFieldsError } = require('./utils');
 
-const validationName = (displayName) => {
+const validationDisplayName = (displayName) => {
   if (!displayName || displayName.length < 8) {
     throwInvalidFieldsError('"displayName" length must be at least 8 characters long');
   }
@@ -27,13 +27,20 @@ const validateInfos = (req, _res, next) => {
 
 const validationFields = (req, _res, next) => {
   const { displayName, email, password } = req.body;
-  validationName(displayName);
+  validationDisplayName(displayName);
   validationEmail(email);
   validationPassword(password);
+  next();
+};
+
+const validationName = (req, _res, next) => {
+  const { name } = req.body;
+  if (!name) throwInvalidFieldsError('"name" is required');
   next();
 };
 
 module.exports = {
   validateInfos,
   validationFields,
+  validationName,
 };
