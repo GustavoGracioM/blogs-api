@@ -1,7 +1,10 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const models = require('../database/models');
-const { throwInvalidFieldsError, throwEmailIsRegistered } = require('../middlewares/utils');
+const { 
+  throwInvalidFieldsError,
+  throwEmailIsRegistered,
+  throwNotFound } = require('../middlewares/utils');
 
 const usersService = {
   async login(email, password) {
@@ -24,6 +27,12 @@ const usersService = {
   async get() {
     const users = await models.User.findAll({ attributes: { exclude: ['password'], raw: true } });
     return users;
+  },
+  async getById(id) {
+    const user = await models.User
+      .findByPk(id, { attributes: { exclude: ['password'] }, raw: true });
+    if (!user) throwNotFound('User does not exist');
+    return user;
   },
 };
 

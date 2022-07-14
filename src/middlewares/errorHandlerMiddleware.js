@@ -1,6 +1,7 @@
 const errors = {
   throwInvalidFieldsError: 400,
   throwNotFoundToken: 401,
+  throwNotFound: 404,
   throwEmailIsRegistered: 409,
 };
 
