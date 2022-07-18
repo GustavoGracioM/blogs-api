@@ -26,8 +26,8 @@ const postController = {
     const token = req.headers.authorization;
     const idJWT = jwt.verify(token, process.env.JWT_SECRET).id;
     await postService.update(id, idJWT, title, content);
-    const result = await postService.getById(id);
-    res.status(200).json(result);
+    const postUpdated = await postService.getById(id);
+    res.status(200).json(postUpdated);
   },
 };
 
