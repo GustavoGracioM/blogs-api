@@ -11,9 +11,14 @@ const postController = {
     const post = await postService.add(title, content, id, categoryIds);
     res.status(201).json(post);
   },
-  async get(req, res) {
+  async get(_req, res) {
     const posts = await postService.get();
     res.status(200).json(posts);
+  },
+  async getById(req, res) {
+    const { id } = req.params;
+    const post = await postService.getById(id);
+    res.status(200).json(post);
   },
 };
 
