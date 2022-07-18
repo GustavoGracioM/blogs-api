@@ -28,12 +28,10 @@ module.exports = {
         }
       },
       published: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       updated: {
-        allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
       } 
     });
   },

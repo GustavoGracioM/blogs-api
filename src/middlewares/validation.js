@@ -19,6 +19,14 @@ const validationPassword = (password) => {
   }
 };
 
+const validationAddPost = (req, res, next) => {
+  const { title, content, categoryIds } = req.body;
+  if (!title || !content || !categoryIds || !Array.isArray(categoryIds)) {
+    throwInvalidFieldsError('Some required fields are missing');
+  }
+  next();
+};
+
 const validateInfos = (req, _res, next) => {
   const { email, password } = req.body;
   if (!email || !password) throwInvalidFieldsError('Some required fields are missing');
@@ -43,4 +51,5 @@ module.exports = {
   validateInfos,
   validationFields,
   validationName,
+  validationAddPost,
 };

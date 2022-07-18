@@ -20,11 +20,9 @@ const attributes = {
     type: DataTypes.INTEGER
   },
   published: {
-    allowNull: false,
     type: DataTypes.DATE
   },
   updated: {
-    allowNull: false,
     type: DataTypes.DATE
   },
 };
