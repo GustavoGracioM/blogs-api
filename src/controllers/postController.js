@@ -20,6 +20,15 @@ const postController = {
     const post = await postService.getById(id);
     res.status(200).json(post);
   },
+  async update(req, res) {
+    const id = Number(req.params.id);
+    const { title, content } = req.body;
+    const token = req.headers.authorization;
+    const idJWT = jwt.verify(token, process.env.JWT_SECRET).id;
+    await postService.update(id, idJWT, title, content);
+    const result = await postService.getById(id);
+    res.status(200).json(result);
+  },
 };
 
 module.exports = postController;

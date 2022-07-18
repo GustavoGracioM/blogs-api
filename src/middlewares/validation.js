@@ -47,9 +47,16 @@ const validationName = (req, _res, next) => {
   next();
 };
 
+const validationUpdatePost = (req, _res, next) => {
+  const { title, content } = req.body;
+  if (!title || !content) throwInvalidFieldsError('Some required fields are missing');
+  next();
+};
+
 module.exports = {
   validateInfos,
   validationFields,
   validationName,
   validationAddPost,
+  validationUpdatePost,
 };

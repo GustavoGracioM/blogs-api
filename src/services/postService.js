@@ -1,5 +1,8 @@
 const models = require('../database/models');
-const { throwInvalidFieldsError, throwNotFound } = require('../middlewares/utils');
+const { 
+  throwInvalidFieldsError,
+   throwNotFound, 
+   throwNotFoundToken } = require('../middlewares/utils');
 
 const template = async (post) => {
   const user = await models
@@ -60,6 +63,10 @@ const postService = {
     if (!posts) throwNotFound('Post does not exist');
     const result = await template(posts);
     return result;
+  },
+  async update(id, idJWT, title, content) {
+    if (id !== idJWT) throwNotFoundToken('Unauthorized user');
+    await models.BlogPost.update({ title, content, updated: new Date() }, { where: { id } });
   },
 };
 
