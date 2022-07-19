@@ -9,5 +9,6 @@ postRouter.post('/', validationToken, validationAddPost, postController.add);
 postRouter.get('/', validationToken, postController.get);
 postRouter.get('/:id', validationToken, postController.getById);
 postRouter.put('/:id', validationToken, validationUpdatePost, postController.update);
+postRouter.delete('/:id', validationToken, postController.delete);
 
 module.exports = postRouter;

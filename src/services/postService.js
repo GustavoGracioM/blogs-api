@@ -26,6 +26,11 @@ const postService = {
     const result = await Promise.all(categories);
     if (result.indexOf(null) !== -1) throwInvalidFieldsError('"categoryIds" not found');
   },
+  async checkIsExistPost(id) {
+    const post = await models.BlogPost.findByPk(id);
+    if (!post) throwNotFound('Post does not exist');
+    return post;
+  },
   async add(title, content, userId, categoryIds) {
     try {
       const post = await models.BlogPost.create({
@@ -67,6 +72,10 @@ const postService = {
   async update(id, idJWT, title, content) {
     if (id !== idJWT) throwNotFoundToken('Unauthorized user');
     await models.BlogPost.update({ title, content, updated: new Date() }, { where: { id } });
+  },
+  async delete(id, idJWT, userId) {
+    if (userId !== idJWT) throwNotFoundToken('Unauthorized user');
+    await models.BlogPost.destroy({ where: { id } });
   },
 };
 
