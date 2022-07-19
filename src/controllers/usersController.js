@@ -1,3 +1,5 @@
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 const usersService = require('../services/usersService');
 
 const usersController = {
@@ -21,6 +23,12 @@ const usersController = {
     const { id } = req.params;
     const user = await usersService.getById(id);
     res.status(200).json(user);
+  },
+  async delete(req, res) {
+    const token = req.headers.authorization;
+    const { id } = jwt.verify(token, process.env.JWT_SECRET);
+    await usersService.delete(id);
+    res.status(204).end();
   },
 };
 
