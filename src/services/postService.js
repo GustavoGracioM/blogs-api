@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const models = require('../database/models');
 const { 
   throwInvalidFieldsError,
@@ -76,6 +77,23 @@ const postService = {
   async delete(id, idJWT, userId) {
     if (userId !== idJWT) throwNotFoundToken('Unauthorized user');
     await models.BlogPost.destroy({ where: { id } });
+  },
+  async getBySearch(content) {
+    const posts = await models.BlogPost.findAll({
+      where: 
+        { [Op.or]: [
+          { title: { [Op.like]: `%${content}%` } },
+          { content: { [Op.like]: `%${content}%` } },
+          ], 
+        }, 
+      include: 
+        { model: models.Category, as: 'Category', through: { attributes: [] } }, 
+      raw: true, 
+      });
+    if (!posts) return this.postService.get();
+    const postsTemplate = posts.map(async (p) => template(p));
+    const result = await Promise.all(postsTemplate);
+    return result;
   },
 };
 

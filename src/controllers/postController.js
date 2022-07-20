@@ -37,6 +37,11 @@ const postController = {
     await postService.delete(id, idJWT, userId);
     res.status(204).end();
   },
+  async getBySearch(req, res) {
+    const { q } = req.query;
+    const posts = await postService.getBySearch(q);
+    res.status(200).json(posts);
+  },
 };
 
 module.exports = postController;
