@@ -35,6 +35,8 @@ Projeto Blogs Api é um projeto do módulo de back-end do curso de desenvolvimen
 * Instale as dependências
     * `npm install`
 * Inicialize a aplicação
+    * `npm run prestart`
+    * `npm run seed`
     * `npm start`
     
 # Endpoints:
@@ -45,8 +47,8 @@ O endpoint faz login e gera um token de acesso;
 - O corpo da requisição deve seguir o formato abaixo:
   ```json
   {
-    "email": "blogsapi@gmail.com",
-    "password": "123456"
+    "email": "lewishamilton@gmail.com",
+    "password": "123456",
   }
   ```
 - Se algum dado estiver incorreto, o status 400 e uma mensagem de erro serão retornados;
@@ -82,17 +84,11 @@ O endpoint faz login e gera um token de acesso;
 - O corpo da requisição deve seguir o formato abaixo:
   ```json
   {
-    "name": "Docker"
+    "name": "Criar categoria"
   }
   ```
 - Se o dado estiver incorreto, o status 400 e uma mensagem de erro serão retornados;
-- Se a categoria for criada com sucesso o resultado retornado deverá ser conforme exibido abaixo, com um status http`201`:
-  ```json
-  {
-    "id": 4,
-    "name": "Docker"
-  }
-  ```
+- Quando os dados são inseridos, o status 201 é retornado e os dados recém-criados;
 
 ## GET `/categories`
 - O endpoint lista todas as categorias registradas no banco;
