@@ -1,6 +1,6 @@
 # Blogs Api
 
-Projeto Blogs Api é um projeto do módulo de back-end do curso de desenvolvimenento web da <a href="https://www.betrybe.com/">Trybe</a>. Objetivo do projeto era desenvolver uma API Rest e um banco de dados com sequelize para a produção de conteúdo de um blog e com ela realizar um CRUD.
+Projeto Blogs Api é um projeto do módulo de back-end do curso de desenvolvimento  web da <a href="https://www.betrybe.com/">Trybe</a>. Objetivo do projeto era desenvolver uma API Rest e um banco de dados com sequelize para a produção de conteúdo de um blog e com ela realizar um CRUD.
 
 
 
